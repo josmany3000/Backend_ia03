@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ai-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python backend.py"
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false # Configúrala en el panel de Render, o añade tu clave aquí para pruebas (menos seguro)
+      - key: PIXABAY_API_KEY
+        sync: false # Configúrala en el panel de Render, o añade tu clave aquí para pruebas (menos seguro)
+      - key: PYTHON_VERSION
+        value: 3.9.18 # Ajusta a la versión de Python que uses localmente, ej. 3.9.18, 3.10.12, 3.11.8
+      - key: PORT
+        value: 5001 # Tu backend escuchará en el puerto 5001
+    healthCheckPath: /
+    autoDeploy: true # Desactiva si quieres desplegar manualmente
