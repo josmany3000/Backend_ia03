@@ -4,3 +4,4 @@ openai
 python-dotenv
 requests
 Pillow
+gunicorn  # ¡Asegúrate de agregar esta línea!
