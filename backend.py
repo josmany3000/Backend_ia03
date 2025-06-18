@@ -17,6 +17,12 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
+# Nueva ruta de verificación de estado para Render
+@app.route('/')
+def health_check():
+    """Ruta simple para que Render verifique que la app está viva."""
+    return "Backend IA en funcionamiento", 200
+
 # Inicializa el cliente de OpenAI
 try:
     client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -390,7 +396,3 @@ def buscar_video_pixabay(query, resolution_aspect_ratio):
     except requests.exceptions.RequestException as e:
         print(f"Error al buscar video en Pixabay: {e}")
         return None
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)
-
